@@ -1,0 +1,17 @@
+name: 04a - Distintas shells
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bash
+        shell: bash
+        run: echo "This is running in Bash shell"
+      - name: sh
+        shell: sh
+        run: echo "This is running in sh shell"
+      - name: Por defecto
+        run: echo "This is running in the default shell"
