@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Mostrar resultados
         run: |
-          echo "#: game_die: El resultado es:" >> $GITHUB_STEP_SUMMARY
+          echo "# :game_die: El resultado es:" >> $GITHUB_STEP_SUMMARY
           echo "dado1: ${{ needs.tirada-dados.outputs.dado1 }}" >> $GITHUB_STEP_SUMMARY
       - name: Mostrar resultado del segundo dado
         if: ${{ inputs.numero-dados == 'dos' }}
