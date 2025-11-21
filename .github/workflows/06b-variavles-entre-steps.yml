@@ -1,0 +1,14 @@
+name: 06b - Pasar valores entre steps
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+jobs:
+  tirada-datos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generar número aleatorio
+        run: echo "NUM_ALEATORIO=$((1 + RANDOM % 6))" >> "$GITHUB_ENV"
+      # Escapar: usando formato
+      - name: Leer resultado
+        run: echo ${{format('El valor del dado es {0} {1}', ':', env.NUM_ALEATORIO)}}
