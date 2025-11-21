@@ -1,0 +1,27 @@
+name: 07a - Entrada y salida entre jobs
+on:
+  workflow_dispatch:
+    inputs:
+      numero-dados:
+        type: choice
+        options:
+          - 'uno'
+          - 'dos'
+        default: 'uno'
+        description: 'Número de dados a tirar'
+jobs:
+  tirada-dados:
+    outputs:
+      dado1: ${{ steps.dado1.outputs.dado1 }}
+      dado2: ${{ steps.dado2.outputs.dado2 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ¿Cuantos dados?
+        run: echo "Hay ${{inputs.numero-dados}} dados"
+      - name: Tirar dado 1
+        id: dado1
+        run: echo "dado1=$((1 + RANDOM % 6))" >> "$GITHUB_OUTPUT"
+      - name: Tirar dado 2
+        if: ${{ inputs.numero-dados == 'dos' }}
+        id: dado2
+        run: echo "dado2=$((1 + RANDOM % 6))" >> "$GITHUB_OUTPUT"
